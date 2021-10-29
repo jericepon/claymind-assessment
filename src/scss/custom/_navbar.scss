@@ -1,0 +1,15 @@
+.navbar {
+    padding: {
+        left: 15px;
+        right: 15px;
+    }
+
+    &-brand {
+    max-width: 60px;
+    
+    & > img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
