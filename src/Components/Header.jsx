@@ -1,19 +1,25 @@
-import React from 'react'
-import { Nav, Navbar } from 'react-bootstrap';
+import React, { useState } from 'react'
+import { CloseButton, Container, Nav, Navbar } from 'react-bootstrap';
 import logo from '../logo.svg'
 
 const Header = () => {
-    return (
-        <Navbar className="navbar navbar-default" bg="light" variant="light">
-            <Navbar.Brand href="#home">
-                <img src={logo} alt="Hilton" />
-            </Navbar.Brand>
+    const [Open, setOpen] = useState(false)
 
-            <Nav className="ms-auto">
-                <Nav.Link href="#home">Home</Nav.Link>
-                <Nav.Link href="#features">Features</Nav.Link>
-                <Nav.Link href="#pricing">Pricing</Nav.Link>
-            </Nav>
+    return (
+        <Navbar className="navbar navbar-default" expand="lg" bg="light" fixed='top' variant="light">
+            <Container>
+                <Navbar.Toggle aria-controls="navbarScroll" onClick={() => setOpen(!Open)} />
+
+                <Nav className={`me-auto ${Open ? '' : 'd-none'} d-lg-flex`}>
+                    <CloseButton onClick={() => setOpen(!Open)}>&times;</CloseButton>
+                    <Nav.Link onClick={() => setOpen(!Open)} href="#map">Map</Nav.Link>
+                    <Nav.Link onClick={() => setOpen(!Open)} href="#gallery">Photo gallery</Nav.Link>
+                    <Nav.Link onClick={() => setOpen(!Open)} href="#amenities">Amenities</Nav.Link>
+                </Nav>
+                <Navbar.Brand className="me-0" href="#banner">
+                    <img src={logo} alt="Hilton" />
+                </Navbar.Brand>
+            </Container>
         </Navbar>
     )
 }
